@@ -48,7 +48,7 @@ const imgHandler = (e)=>{
             galleryEl.innerHTML="";
             page=1;
         }
-        console.log(item)
+        
         if (item.totalHits===0 || item.totalHits===1){
             
             console.log("No photo at your request");
@@ -56,7 +56,7 @@ const imgHandler = (e)=>{
         } else{
             renderImages(item.hits);
             count=count+1;
-            query = searchEl.value;
+            
            
         }
         
