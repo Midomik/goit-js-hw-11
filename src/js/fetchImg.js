@@ -2,7 +2,7 @@ import { KEY } from "./api-key";
 import axios from "axios";
 import Notiflix from 'notiflix';
 
-// const apiKEY = axios.defaults.headers.common["x-api-key"] = KEY;
+
 
 axios.defaults.baseURL = 'https://pixabay.com/api/';
 axios.interceptors.response.use(
@@ -25,6 +25,6 @@ export async function fetchImg(query, page, perPage){
         per_page: perPage,
     })
     const response = await axios.get(`?key=${KEY}&${searchParams.toString()}`);
-    console.log(response.data)
+    // console.log(response.data)
     return response.data;
 }

@@ -1,6 +1,8 @@
 import axios from "axios";
 import { fetchImg } from "./js/fetchImg";
 import Notiflix from 'notiflix';
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
 
 const formEl = document.querySelector(".search-form");
 const searchEl = formEl.firstElementChild;
@@ -12,7 +14,7 @@ let count = 0;
 const perPage = 40;
 
 const renderImages = (arr, maxPages)=>{
-         
+    
     const markup = arr.map(item=>{return `<a class="large-img-link" href="${item.largeImageURL}">
       <div class="photo-card">
         <img class="img" src="${item.webformatURL}" alt="${item.tags}" loading="lazy"width="400" height="250" />
@@ -26,10 +28,11 @@ const renderImages = (arr, maxPages)=>{
     </a>`
   }).join("")
     galleryEl.insertAdjacentHTML("beforeend", markup);
-    // loMore.style.display = "block";
+    
     page+=1;
-    console.log(maxPages);
-    console.log(page);
+    
+    let lightbox = new SimpleLightbox('.gallery a', {});
+  
 
     if(page>=maxPages){
         loMore.style.display="none";
@@ -41,7 +44,7 @@ const renderImages = (arr, maxPages)=>{
 const imgHandler = (e)=>{ 
     e.preventDefault();
     
-    if(searchEl.value==="".trim() ){
+    if(searchEl.value.trim()===""){
         Notiflix.Notify.failure('Enter a request');
         return;
     }
